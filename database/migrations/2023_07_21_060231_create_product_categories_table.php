@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('parent_id')->constrained('categories')->nullable()->onDelete('cascade');
+            $table->text('name');
+            $table->text('description');
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->boolean('active');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
