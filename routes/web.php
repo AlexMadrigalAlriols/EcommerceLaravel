@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,22 +17,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/login');
-
 Route::get('/home', function () {
     if (session('status')) {
-        return redirect()->route('dashboard.home')->with('status', session('status'));
+        return redirect()->route('dashboard.main')->with('status', session('status'));
     }
 
-    return redirect()->route('dashboard.home');
+    return redirect()->route('dashboard.main');
 });
 
-Auth::routes();
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// Logged Dashboard
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['auth']], static function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('home');
+    Route::get('/', [DashboardController::class, 'index'])->name('main');
 })->namespace('Admin');
 
+// Auth Routes
+Auth::routes();
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth']], static function () {
     // Change password
     if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php'))) {

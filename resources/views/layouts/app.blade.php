@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="locale" content="{{ app()->getLocale() }}">
 
-    <title>{{ trans('global.site_title') }} | Login</title>
+    <title>{{ trans('global.site_title') }} | {{ $section }}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" crossorigin="anonymous">
     <link href="{{ asset('css/adminltev3.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />

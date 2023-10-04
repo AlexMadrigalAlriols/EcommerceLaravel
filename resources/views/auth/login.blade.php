@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['section' => 'Login'])
 @section('content')
 
 <div class="login_content">
@@ -8,10 +8,22 @@
     <div class="login_right_bg">
 
         <div class="login-header">
-            <div class="brand text-center">
-                <a title="{{ trans('global.site_title') }}" href="{{ route('dashboard.home') }}">
-                    <img src="{{ asset('img/logo-default.png') }}" alt="{{ trans('global.site_title') }}">
+            <div class="brand text-center pb-5">
+                <a title="{{ trans('global.site_title') }}" href="{{ route('dashboard.main') }}">
+                    <img src="{{ asset('img/logo-default.png') }}" class="img-fluid" alt="{{ trans('global.site_title') }}">
                 </a>
+            </div>
+        </div>
+
+        <div class="login-buttons">
+            <button type="button" class="btn btn-primary btn-block btn-lg">
+                {{ trans('global.login_with') }}
+            </button>
+
+            <div class="d-flex py-4">
+                <hr class="my-auto flex-grow-1 bg-light">
+                <div class="px-4">OR</div>
+                <hr class="my-auto flex-grow-1 bg-light">
             </div>
         </div>
 
@@ -62,9 +74,6 @@
             <div class="login-buttons">
                 <button type="submit" class="btn btn-primary btn-block btn-lg">
                     {{ trans('global.login') }}
-                </button>
-                <button type="button" class="btn btn-primary btn-block btn-lg">
-                    {{ trans('global.login_with') }}
                 </button>
             </div>
                 <hr>
